@@ -48,7 +48,7 @@ const Register = () => {
         password: form.password
       })
       toast.success('Registration successful! Please check your email to verify your account.')
-      navigate('/login')
+navigate('/check-email', { state: { email: form.email } })
     } catch (err) {
       toast.error(err.response?.data?.message || 'Registration failed, please try again')
     } finally {
