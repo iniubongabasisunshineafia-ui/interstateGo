@@ -46,15 +46,22 @@ router.post('/register', async (req, res) => {
       <p>If you didn't create an account, just ignore this email.</p>
     `
 
-    await sendEmail({
-      email: user.email,
-      subject: 'InterstateGo - Verify Your Email',
-      message
-    })
+  
+// send email but don't crash if it fails
+try {
+  await sendEmail({
+    email: user.email,
+    subject: 'InterstateGo - Verify Your Email',
+    message
+  })
+} catch (emailErr) {
+  console.log('Email sending failed:', emailErr.message)
+}
 
-    res.status(201).json({
-      message: 'Registration successful! Please check your email to verify your account.'
-    })
+res.status(201).json({
+  message: 'Registration successful! Please check your email to verify your account.',
+  verificationToken: user.verificationToken
+})
 
   } catch (err) {
     console.log(err)
@@ -146,13 +153,18 @@ router.post('/forgot-password', async (req, res) => {
       <p>If you didn't request this, just ignore this email.</p>
     `
 
-    await sendEmail({
-      email: user.email,
-      subject: 'InterstateGo - Password Reset Request',
-      message
-    })
+  try {
+  await sendEmail({
+    email: user.email,
+    subject: 'InterstateGo - Password Reset Request',
+    message
+  })
+} catch (emailErr) {
+  console.log('Email sending failed:', emailErr.message)
+}
 
-    res.json({ message: 'Password reset link sent to your email' })
+res.json({ message: 'Password reset link sent to your email' })
+    
 
   } catch (err) {
     res.status(500).json({ message: 'Something went wrong, please try again' })
