@@ -10,8 +10,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   // set axios base url
-  axios.defaults.baseURL = 'http://localhost:5000/api'
-
+ axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
+ 
+ 
   useEffect(() => {
     // check if user is logged in on app load
     const storedUser = localStorage.getItem('interstategoUser')
