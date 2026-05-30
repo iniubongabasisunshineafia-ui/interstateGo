@@ -29,13 +29,14 @@ router.post('/register', async (req, res) => {
     const verificationToken = crypto.randomBytes(32).toString('hex')
 
     // create the user
-    const user = await User.create({
-      name,
-      email,
-      phone,
-      password,
-      verificationToken
-    })
+   const user = await User.create({
+  name,
+  email,
+  phone,
+  password,
+  verificationToken,
+  isVerified: true
+})
 
     // send verification email
     const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`
@@ -55,8 +56,7 @@ sendEmail({
 }).catch(emailErr => console.log('Email sending failed:', emailErr.message))
 
 res.status(201).json({
-  message: 'Registration successful! Please check your email to verify your account.',
-  verificationToken: user.verificationToken
+  message: 'Registration successful! You can now log in.'
 })
 
   } catch (err) {
