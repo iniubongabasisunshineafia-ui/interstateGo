@@ -47,16 +47,12 @@ router.post('/register', async (req, res) => {
     `
 
   
-// send email but don't crash if it fails
-try {
-  await sendEmail({
-    email: user.email,
-    subject: 'InterstateGo - Verify Your Email',
-    message
-  })
-} catch (emailErr) {
-  console.log('Email sending failed:', emailErr.message)
-}
+// send email in background - don't wait for it
+sendEmail({
+  email: user.email,
+  subject: 'InterstateGo - Verify Your Email',
+  message
+}).catch(emailErr => console.log('Email sending failed:', emailErr.message))
 
 res.status(201).json({
   message: 'Registration successful! Please check your email to verify your account.',
