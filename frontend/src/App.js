@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
 
-// pages
+// pagess
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -15,7 +15,6 @@ import BookingHistory from './pages/BookingHistory'
 import BookingDetails from './pages/BookingDetails'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
-import CheckEmail from './pages/CheckEmail'
 
 // admin pages
 import AdminDashboard from './pages/admin/Dashboard'
@@ -63,7 +62,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/check-email" element={<CheckEmail />} />
 
           {/* passenger protected routes */}
           <Route path="/buses/:routeId" element={<PrivateRoute><SeatSelection /></PrivateRoute>} />
