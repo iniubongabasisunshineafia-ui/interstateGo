@@ -139,8 +139,9 @@ router.post('/', protect, async (req, res) => {
       bookingRef: bookingRef
     }
 
-    await sendBookingConfirmation(req.user, bookingForEmail, fullBooking.bus, fullBooking.route)
-
+sendBookingConfirmation(req.user, bookingForEmail, fullBooking.bus, fullBooking.route)
+  .catch(err => console.log('Booking email failed:', err.message))
+    
     res.status(201).json({
       message: 'Booking successful! Check your email for your ticket.',
       booking,
@@ -279,11 +280,11 @@ router.put('/:id/cancel', protect, async (req, res) => {
       </div>
     `
 
-    await sendEmail({
-      email: req.user.email,
-      subject: 'InterstateGo - Booking Cancelled (' + booking.bookingRef + ')',
-      message
-    })
+    sendEmail({
+  email: req.user.email,
+  subject: 'InterstateGo - Booking Cancelled (' + booking.bookingRef + ')',
+  message
+}).catch(err => console.log('Cancellation email failed:', err.message))
 
     res.json({ message: refundMessage, booking })
 
@@ -432,11 +433,11 @@ router.put('/:id/admin-cancel', protect, adminOnly, async (req, res) => {
       </div>
     `
 
-    await sendEmail({
-      email: booking.user.email,
-      subject: 'InterstateGo - Important: Your Booking Has Been Cancelled',
-      message
-    })
+    sendEmail({
+  email: booking.user.email,
+  subject: 'InterstateGo - Important: Your Booking Has Been Cancelled',
+  message
+}).catch(err => console.log('Email failed:', err.message))
 
     res.json({ message: 'Booking cancelled and passenger notified', booking })
 
