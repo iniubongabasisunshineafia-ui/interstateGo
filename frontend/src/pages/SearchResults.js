@@ -394,14 +394,14 @@ const SearchResults = () => {
                 }}>
 
                   {/* route info */}
-                  <div style={{
+                  <div className="route-info" style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '20px',
                     flex: 1
                   }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{
+                    <div style={{ textAlign: 'center', flex: 1 }}>
+                      <div className="city-text" style={{
                         fontSize: '22px',
                         fontWeight: '800',
                         color: '#0f172a'
@@ -454,8 +454,8 @@ const SearchResults = () => {
                       </span>
                     </div>
 
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{
+                    <div style={{ textAlign: 'center', flex: 1 }}>
+                      <div className="city-text" style={{
                         fontSize: '22px',
                         fontWeight: '800',
                         color: '#0f172a'
@@ -474,14 +474,14 @@ const SearchResults = () => {
                   </div>
 
                   {/* price and button */}
-                  <div style={{
+                  <div className="price-container" style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-end',
                     gap: '12px'
                   }}>
                     <div>
-                      <div style={{
+                      <div className="price-label" style={{
                         fontSize: '11px',
                         color: '#94a3b8',
                         textAlign: 'right',
@@ -567,6 +567,18 @@ const SearchResults = () => {
       <style>{`
         @media (max-width: 768px) {
           form { grid-template-columns: 1fr !important; }
+          .route-info { gap: 10px !important; width: 100%; }
+          .city-text { font-size: 16px !important; }
+          .price-container {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            width: 100%;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 16px;
+            margin-top: 4px;
+          }
+          .price-label { text-align: left !important; }
         }
       `}</style>
     </div>
