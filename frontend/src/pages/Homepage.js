@@ -240,14 +240,16 @@ const Homepage = () => {
                 onChange={e => setDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
                 style={{
-                  width: '100%',
-                  padding: '12px 14px',
-                  borderRadius: '8px',
-                  border: '2px solid #e2e8f0',
-                  fontSize: '15px',
-                  color: '#0f172a',
-                  background: '#fff'
-                }}
+              width: '100%',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
+              padding: '12px 14px',
+              borderRadius: '8px',
+              border: '2px solid #e2e8f0',
+              fontSize: '15px',
+              color: '#0f172a',
+              background: '#fff'
+            }}
               />
             </div>
 
@@ -608,6 +610,8 @@ const Homepage = () => {
     }
     form input, form select, form button {
       width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
     }
   }
 `}</style>
