@@ -170,30 +170,19 @@ const SearchResults = () => {
           }}>
             <div>
               <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '11px',
-                fontWeight: '600',
-                color: '#94a3b8',
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px',
+                fontWeight: '600', color: '#94a3b8', marginBottom: '6px',
+                textTransform: 'uppercase', letterSpacing: '0.5px'
               }}>
-                <FaMapMarkerAlt color="#3b82f6" size={10} />
-                From
+                <FaMapMarkerAlt color="#3b82f6" size={10} /> From
               </label>
               <select
                 value={searchForm.from}
                 onChange={e => setSearchForm({ ...searchForm, from: e.target.value })}
                 style={{
-                  width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '8px',
-                  border: '1px solid #334155',
-                  background: '#1e293b',
-                  color: '#fff',
-                  fontSize: '14px'
+                  width: '100%', boxSizing: 'border-box', padding: '10px 14px',
+                  borderRadius: '8px', border: '1px solid #334155',
+                  background: '#1e293b', color: '#fff', fontSize: '14px'
                 }}
               >
                 <option value="">Select city</option>
@@ -205,30 +194,19 @@ const SearchResults = () => {
 
             <div>
               <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '11px',
-                fontWeight: '600',
-                color: '#94a3b8',
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px',
+                fontWeight: '600', color: '#94a3b8', marginBottom: '6px',
+                textTransform: 'uppercase', letterSpacing: '0.5px'
               }}>
-                <FaMapMarkerAlt color="#ef4444" size={10} />
-                To
+                <FaMapMarkerAlt color="#ef4444" size={10} /> To
               </label>
               <select
                 value={searchForm.to}
                 onChange={e => setSearchForm({ ...searchForm, to: e.target.value })}
                 style={{
-                  width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '8px',
-                  border: '1px solid #334155',
-                  background: '#1e293b',
-                  color: '#fff',
-                  fontSize: '14px'
+                  width: '100%', boxSizing: 'border-box', padding: '10px 14px',
+                  borderRadius: '8px', border: '1px solid #334155',
+                  background: '#1e293b', color: '#fff', fontSize: '14px'
                 }}
               >
                 <option value="">Select city</option>
@@ -240,32 +218,30 @@ const SearchResults = () => {
 
             <div>
               <label style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '11px',
-                fontWeight: '600',
-                color: '#94a3b8',
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px',
+                fontWeight: '600', color: '#94a3b8', marginBottom: '6px',
+                textTransform: 'uppercase', letterSpacing: '0.5px'
               }}>
-                <FaCalendarAlt color="#3b82f6" size={10} />
-                Date
+                <FaCalendarAlt color="#3b82f6" size={10} /> Date
               </label>
               <input
                 type="date"
                 value={searchForm.date}
-                onChange={e => setSearchForm({ ...searchForm, date: e.target.value })}
+                onChange={e => {
+                  const selectedDate = e.target.value
+                  const today = new Date().toISOString().split('T')[0]
+                  if (selectedDate && selectedDate < today) {
+                    toast.error('you cannot select a past date')
+                    setSearchForm({ ...searchForm, date: today })
+                  } else {
+                    setSearchForm({ ...searchForm, date: selectedDate })
+                  }
+                }}
                 min={new Date().toISOString().split('T')[0]}
                 style={{
-                  width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '8px',
-                  border: '1px solid #334155',
-                  background: '#1e293b',
-                  color: '#fff',
-                  fontSize: '14px'
+                  width: '100%', boxSizing: 'border-box', padding: '10px 14px',
+                  borderRadius: '8px', border: '1px solid #334155',
+                  background: '#1e293b', color: '#fff', fontSize: '14px'
                 }}
               />
             </div>
@@ -273,13 +249,9 @@ const SearchResults = () => {
             <button
               type="submit"
               style={{
-                padding: '10px 24px',
-                background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)',
-                color: '#fff',
-                borderRadius: '8px',
-                fontSize: '14px',
-                fontWeight: '700',
-                whiteSpace: 'nowrap'
+                padding: '10px 24px', background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)',
+                color: '#fff', borderRadius: '8px', fontSize: '14px',
+                fontWeight: '700', whiteSpace: 'nowrap', width: '100%', boxSizing: 'border-box'
               }}
             >
               Search
