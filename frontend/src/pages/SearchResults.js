@@ -239,9 +239,17 @@ const SearchResults = () => {
                 }}
                 min={new Date().toISOString().split('T')[0]}
                 style={{
-                  width: '100%', boxSizing: 'border-box', padding: '10px 14px',
-                  borderRadius: '8px', border: '1px solid #334155',
-                  background: '#1e293b', color: '#fff', fontSize: '14px'
+                  width: '100%', 
+                  minWidth: 0, /* kills apple's hidden minimum width */
+                  WebkitAppearance: 'none', /* strips native ios styling limits */
+                  display: 'block',
+                  boxSizing: 'border-box', 
+                  padding: '10px 14px',
+                  borderRadius: '8px', 
+                  border: '1px solid #334155',
+                  background: '#1e293b', 
+                  color: '#fff', 
+                  fontSize: '14px'
                 }}
               />
             </div>
