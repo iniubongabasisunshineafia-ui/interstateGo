@@ -601,12 +601,17 @@ const Homepage = () => {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          form {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+  @media (max-width: 768px) {
+    form {
+      grid-template-columns: 1fr !important;
+      padding: 16px !important;
+    }
+    form input, form select, form button {
+      width: 100% !important;
+    }
+  }
+`}</style>
+      
     </div>
   )
 }
